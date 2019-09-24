@@ -1,20 +1,18 @@
 package com.grupod;
 
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class FuncionarioTest 
 {
     /**
      * Rigorous Test :-)
      */
     @Test
-    public void shouldAnswerWithTrue()
+    public void getSalarioBruto()
     {
-        assertTrue( true );
+        assert( true );
     }
 }
