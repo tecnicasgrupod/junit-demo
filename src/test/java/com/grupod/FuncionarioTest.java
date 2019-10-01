@@ -2,12 +2,12 @@ package com.grupod;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-/**
- * Unit test for simple App.
- */
 public class FuncionarioTest 
 {
     private Funcionario f;
@@ -18,145 +18,30 @@ public class FuncionarioTest
         f = new Funcionario();
     }
     
-    @Test
-    public void getINSS()
+    @DisplayName("Teste INSS")
+    @ParameterizedTest
+    @CsvSource({"0,0", "1000,45", "2500, 112.50", "2501, 112.54", "100000, 4500", "111111.12, 5000", "200000, 5000"})
+    public void getINSS(int val, int resp)
     {
-        f.setSalarioBruto(1000);
-        assertEquals(45, f.getINSS(), 0.0001);
+        f.setSalarioBruto(val);
+        assertEquals(resp, f.getINSS(), 0.0001);
     }
 
-    @Test
-    public void getINSS2(){
-        f.setSalarioBruto(2500);
-        assertEquals(112.50, f.getINSS(), 0.0001);
-    }
-
-    @Test
-    public void getINSS3(){
-        f.setSalarioBruto(2501);
-        assertEquals(112.54, f.getINSS(), 0.0001);
-    }
-
-    @Test
-    public void getINSS4(){
-        f.setSalarioBruto(100000);
-        assertEquals(4500, f.getINSS(), 0.0001);
-    }
-
-    @Test
-    public void getINSS5(){
-        f.setSalarioBruto(111111.12);
-        assertEquals(5000, f.getINSS(), 0.0001);
-    }
-
-    @Test
-    public void getINSS6(){
-        f.setSalarioBruto(200000);
-        assertEquals(5000, f.getINSS(), 0.0001);
-    }
-
-    @Test
-    public void getINSS7(){
-        f.setSalarioBruto(0);
-        assertEquals(0, f.getINSS(), 0.0001);
-    }
-
-    @Test
-    public void getIR1()
+    @DisplayName("Teste IR")
+    @ParameterizedTest
+    @CsvSource({"0,0", "2500,0", "2501, 0.12", "100000, 11400", "111111.12, 13033.33", "200000, 23700"})
+    public void getIR(int val, int res)
     {
-        f.setSalarioBruto(1000);
-        assertEquals(0, f.getIRPF(), 0.0001);
+        f.setSalarioBruto(val);
+        assertEquals(res, f.getIRPF(), 0.0001);
     }
 
-    @Test
-    public void getIR2()
+    @DisplayName("Teste Salario Liquido")
+    @ParameterizedTest
+    @CsvSource({"0,0", "1000,995", "2500,2387.50", "2501, 2388.34", "100000, 84100","111111.12,93077.79", "200000,171300"})
+    public void getSalarioLiquido(int val, int res)
     {
-        f.setSalarioBruto(2500);
-        assertEquals(0, f.getIRPF(), 0.0001);
-    }
-
-    @Test
-    public void getIR3()
-    {
-        f.setSalarioBruto(2501);
-        assertEquals(0.12, f.getIRPF(), 0.0001);
-    }
-
-    @Test
-    public void getIR4()
-    {
-        f.setSalarioBruto(100000);
-        assertEquals(11400, f.getIRPF(), 0.0001);
-    }
-
-    @Test
-    public void getIR5()
-    {
-        f.setSalarioBruto(111111.12);
-        assertEquals(13033.33, f.getIRPF(), 0.0001);
-    }
-
-    @Test
-    public void getIR6()
-    {
-        f.setSalarioBruto(200000);
-        assertEquals(23700, f.getIRPF(), 0.0001);
-    }
-
-    @Test
-    public void getIR7()
-    {
-        f.setSalarioBruto(0);
-        assertEquals(0, f.getIRPF(), 0.0001);
-    }
-
-    @Test
-    public void getSalarioLiquido1()
-    {
-        f.setSalarioBruto(1000);
-        assertEquals(995, f.getSalarioLiquido(), 0.0001);
-    }
-
-    @Test
-    public void getSalarioLiquido2()
-    {
-        f.setSalarioBruto(2500);
-        assertEquals(2387.50, f.getSalarioLiquido(), 0.0001);
-    }
-
-    @Test
-    public void getSalarioLiquido3()
-    {
-        f.setSalarioBruto(2501);
-        assertEquals(2388.34, f.getSalarioLiquido(), 0.0001);
-    }
-
-    @Test
-    public void getSalarioLiquido4()
-    {
-
-        f.setSalarioBruto(100000);
-        assertEquals(84100, f.getSalarioLiquido(), 0.0001);
-    }
-
-    @Test
-    public void getSalarioLiquido5()
-    {
-        f.setSalarioBruto(111111.12);
-        assertEquals(93077.79, f.getSalarioLiquido(), 0.0001);
-    }
-
-    @Test
-    public void getSalarioLiquido6()
-    {
-        f.setSalarioBruto(200000);
-        assertEquals(171300, f.getSalarioLiquido(), 0.0001);
-    }
-
-    @Test
-    public void getSalarioLiquido7()
-    {
-        f.setSalarioBruto(0);
-        assertEquals(0, f.getSalarioLiquido(), 0.0001);
+        f.setSalarioBruto(val);
+        assertEquals(res, f.getSalarioLiquido(), 0.0001);
     }
 }
